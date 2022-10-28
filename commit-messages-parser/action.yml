@@ -1,0 +1,30 @@
+name: "Compare commit messages parser"
+description: "Parse commit messages between two commits to find issues and etc."
+inputs:
+  token:
+    description: "Github token"
+    default: ${{ github.token }}
+  delimiter:
+    description: "Delimiter for array of entries"
+    default: ","
+  regexp:
+    description: "Regexp to match, defaults to Jira issue regexp"
+    default: "[a-zA-Z]+-[0-9]+"
+  repo:
+    description: "Repository name"
+    default: ${{ github.event.repository.name }}
+  owner:
+    description: "Repository owner"
+    default: ${{ github.event.repository.owner.login }}
+  head:
+    description: "Head commit"
+    required: true
+  base:
+    description: "Base commit"
+    required: true
+outputs:
+  entries:
+    description: "Matched substrings"
+runs:
+  using: node16
+  main: index.js

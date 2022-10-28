@@ -1,0 +1,26 @@
+name: "Jira issue transition"
+description: Transfer multiple issues to a given status"
+inputs:
+  issues:
+    description: "Issues to transfer"
+  delimiter:
+    description: "Issues delimiter in the issues string"
+    default: ","
+  jira-url:
+    description: "Jira URL"
+    required: true
+  jira-username:
+    description: "Jira username"
+    required: true
+  jira-token:
+    description: "Jira token"
+    required: true
+  target-transition:
+    description: "Target transition title"
+  target-transition-id:
+    description: "Target transition id"
+  target-label:
+    description: "Target label"
+runs:
+  using: node16
+  main: index.js

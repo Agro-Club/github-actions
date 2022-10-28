@@ -1,0 +1,23 @@
+name: "Jira Issue update"
+description: Update multiple issues to a given state"
+inputs:
+  issues:
+    description: "Issues to transfer"
+  delimiter:
+    description: "Issues delimiter in the issues string"
+    default: ","
+  jira-url:
+    description: "Jira URL"
+    required: true
+  jira-username:
+    description: "Jira username"
+    required: true
+  jira-token:
+    description: "Jira token"
+    required: true
+  request-body:
+    description: "Must be a json string. For example see request example in\nhttps://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-issueidorkey-put"
+    required: true
+runs:
+  using: node16
+  main: index.js
