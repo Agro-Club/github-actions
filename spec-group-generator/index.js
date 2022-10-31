@@ -6,7 +6,7 @@ const start = async () => {
     const count = parseInt(core.getInput("count", { required: true }));
     if (!count || isNaN(count) || !isFinite(count))
         throw new TypeError("count must be a number");
-    const path = core.getInput("path", { required: true });
+    const path = core.getInput("path");
     const resolvedPath = resolve(__dirname, path);
     console.log(`Generating specs from ${resolvedPath}`);
     const direntArr = await readdir(resolvedPath, { withFileTypes: true });
