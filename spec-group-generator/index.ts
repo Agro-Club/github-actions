@@ -20,6 +20,11 @@ const start = async () => {
   const maxPerGroup = Math.ceil(direntArr.length / count);
 
   const specGroups = direntArr.reduce<string[]>((acc, dirent, index) => {
+    if (
+      dirent.isFile() &&
+      !dirent.name.match(new RegExp(core.getInput("include")))
+    )
+      return acc;
     const groupIndex = Math.floor(index / maxPerGroup);
     const groupPath = dirent.isDirectory()
       ? `${path}${dirent.name}/*`

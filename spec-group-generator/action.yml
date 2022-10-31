@@ -7,6 +7,9 @@ inputs:
   path:
     description: "Path to the tests folder"
     required: true
+  include:
+    description: "Include file regexp"
+    default: ".+[.tsx?|.jsx?]$"
 outputs:
   result:
     description: "Spec groups"
