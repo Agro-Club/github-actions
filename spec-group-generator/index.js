@@ -15,8 +15,8 @@ const start = async () => {
     const specGroups = direntArr.reduce((acc, dirent, index) => {
         const groupIndex = index % count;
         const groupPath = dirent.isDirectory()
-            ? `${path}/${dirent.name}/*`
-            : `${path}/${dirent.name}`;
+            ? `${resolvedPath}/${dirent.name}/*`
+            : `${resolvedPath}/${dirent.name}`;
         if (!acc[groupIndex])
             acc[groupIndex] = groupPath;
         else
