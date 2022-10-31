@@ -38,8 +38,10 @@ async function start() {
       return entries;
     }
 
-    console.log(`Found entries: ${entries}`);
-    core.setOutput("entries", entries);
+    const entriesArr = [...entries];
+
+    console.log(`Found entries: ${entriesArr}`);
+    core.setOutput("entries", entriesArr);
 
     return entries;
   } catch (error: any) {

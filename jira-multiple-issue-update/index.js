@@ -8,7 +8,7 @@ async function start() {
     const jiraUser = core.getInput("jira-username", { required: true });
     const issues = JSON.parse(core.getInput("issues"));
     if (!Array.isArray(issues))
-        console.log("Issues must be an array! Found: ", issues);
+        throw new Error("Issues must be an array!");
     const body = core.getInput("request-body", { required: true });
     const jiraClient = axios.create({
         baseURL: `${jiraUrl}/rest/api/3`,
