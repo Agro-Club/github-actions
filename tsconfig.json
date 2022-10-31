@@ -17,6 +17,7 @@
   "include": [
     "jira-multiple-issue-transition",
     "commit-messages-parser",
-    "jira-multiple-issue-update"
+    "jira-multiple-issue-update",
+    "spec-group-generator"
   ]
 }
