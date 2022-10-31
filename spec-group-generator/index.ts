@@ -15,14 +15,15 @@ const start = async () => {
   const resolvedPath = resolve(__dirname, path);
   console.log(`Generating specs from ${resolvedPath}`);
 
-  const direntArr = await readdir(resolvedPath, { withFileTypes: true });
+  const direntArr = (
+    await readdir(resolvedPath, { withFileTypes: true })
+  ).filter((dirent) =>
+    dirent.isFile()
+      ? dirent.name.match(new RegExp(core.getInput("include")))
+      : true
+  );
 
   const specGroups = direntArr.reduce<string[]>((acc, dirent, index) => {
-    if (
-      dirent.isFile() &&
-      !dirent.name.match(new RegExp(core.getInput("include")))
-    )
-      return acc;
     const groupIndex = index % count;
     console.log(`Adding ${index} to group ${groupIndex}`);
     const groupPath = dirent.isDirectory()
