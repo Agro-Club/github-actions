@@ -10,7 +10,6 @@ const start = async () => {
     const resolvedPath = resolve(__dirname, path);
     console.log(`Generating specs from ${resolvedPath}`);
     const direntArr = await readdir(resolvedPath, { withFileTypes: true });
-    console.log(`Found ${direntArr.length} directories/files`);
     const maxPerGroup = Math.ceil(direntArr.length / count);
     const specGroups = direntArr.reduce((acc, dirent, index) => {
         const groupIndex = Math.floor(index / maxPerGroup);
@@ -19,7 +18,8 @@ const start = async () => {
             : `${path}${dirent.name}`;
         if (!acc[groupIndex])
             acc[groupIndex] = groupPath;
-        acc[groupIndex] += `${acc[groupIndex]}, ${groupPath}`;
+        else
+            acc[groupIndex] = `${acc[groupIndex]}, ${groupPath}`;
         return acc;
     }, []);
     core.setOutput("result", specGroups);
