@@ -6,7 +6,7 @@ inputs:
     required: true
   path:
     description: "Path to the tests folder"
-    required: true
+    default: "."
   include:
     description: "Include file regexp"
     default: ".+[.tsx?|.jsx?]$"
