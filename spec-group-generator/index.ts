@@ -17,6 +17,8 @@ const start = async () => {
 
   const direntArr = await readdir(resolvedPath, { withFileTypes: true });
 
+  console.log(`Found ${direntArr.length} directories/files`);
+
   const maxPerGroup = Math.ceil(direntArr.length / count);
 
   const specGroups = direntArr.reduce<string[]>((acc, dirent, index) => {
