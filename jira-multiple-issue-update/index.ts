@@ -10,7 +10,8 @@ async function start() {
   const jiraUser = core.getInput("jira-username", { required: true });
   const issues = JSON.parse(core.getInput("issues"));
 
-  if (!Array.isArray(issues)) throw new Error("Issues must be an array");
+  if (!Array.isArray(issues))
+    throw new Error("Issues must be an array! Found: ", issues);
 
   const body = core.getInput("request-body", { required: true });
 
