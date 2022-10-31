@@ -14,7 +14,6 @@ const start = async () => {
         : true);
     const specGroups = direntArr.reduce((acc, dirent, index) => {
         const groupIndex = index % count;
-        console.log(`Adding ${index} to group ${groupIndex}`);
         const groupPath = dirent.isDirectory()
             ? `${path}${dirent.name}/*`
             : `${path}${dirent.name}`;
