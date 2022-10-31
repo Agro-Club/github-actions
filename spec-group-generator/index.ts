@@ -10,11 +10,10 @@ const start = async () => {
 
   const path = core.getInput("path", { required: true });
 
-  console.log(`Generating specs from ${path}...`);
-  const resolvedPath = resolve(path);
+  const resolvedPath = resolve(__dirname, path);
+  console.log(`Generating specs from ${resolvedPath}`);
 
   const direntArr = await readdir(resolvedPath, { withFileTypes: true });
-  console.log(`Found dirents:`, direntArr);
 
   const maxPerGroup = Math.ceil(direntArr.length / count);
 
