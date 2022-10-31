@@ -10,3 +10,4 @@ jobs:
         uses: Agro-Club/github-actions/spec-group-generator@master
         with:
           count: 5
+          path: ./spec-group-generator
