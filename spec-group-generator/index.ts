@@ -2,6 +2,8 @@ import * as core from "@actions/core";
 import { readdir } from "fs/promises";
 import { resolve } from "path";
 
+const __dirname = resolve();
+
 const start = async () => {
   const count = parseInt(core.getInput("count", { required: true }));
 
