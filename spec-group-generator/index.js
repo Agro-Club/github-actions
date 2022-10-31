@@ -10,12 +10,11 @@ const start = async () => {
     const resolvedPath = resolve(__dirname, path);
     console.log(`Generating specs from ${resolvedPath}`);
     const direntArr = await readdir(resolvedPath, { withFileTypes: true });
-    const maxPerGroup = Math.ceil(direntArr.length / count);
     const specGroups = direntArr.reduce((acc, dirent, index) => {
         if (dirent.isFile() &&
             !dirent.name.match(new RegExp(core.getInput("include"))))
             return acc;
-        const groupIndex = Math.floor(index / maxPerGroup);
+        const groupIndex = index % count;
         const groupPath = dirent.isDirectory()
             ? `${path}${dirent.name}/*`
             : `${path}${dirent.name}`;
