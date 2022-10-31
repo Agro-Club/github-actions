@@ -1,0 +1,13 @@
+on: [push]
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    name: A job to transfer issues
+    steps:
+      - name: Find issues in commit messages
+        id: find-issues
+        uses: Agro-Club/github-actions/spec-group-generator@master
+        with:
+          count: 5
+          path: ./

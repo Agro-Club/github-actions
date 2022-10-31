@@ -1,0 +1,15 @@
+name: "Cypress spec group generator"
+description: "Generates spec groups for N parallel Cypress runs"
+inputs:
+  count:
+    description: "Num of parallel runs"
+    required: true
+  path:
+    description: "Path to the tests folder"
+    required: true
+outputs:
+  result:
+    description: "Spec groups"
+runs:
+  using: node16
+  main: index.js

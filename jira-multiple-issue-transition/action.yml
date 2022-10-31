@@ -1,5 +1,5 @@
 name: "Jira issue transition"
-description: Transfer multiple issues to a given status"
+description: "Transfer multiple issues to a given status"
 inputs:
   issues:
     description: "Issues to transfer"
