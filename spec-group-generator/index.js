@@ -15,7 +15,7 @@ const start = async () => {
             !dirent.name.match(new RegExp(core.getInput("include"))))
             return acc;
         const groupIndex = index % count;
-        console.log(`Adding ${dirent.name} to group ${groupIndex}`);
+        console.log(`Adding ${index} to group ${groupIndex}`);
         const groupPath = dirent.isDirectory()
             ? `${path}${dirent.name}/*`
             : `${path}${dirent.name}`;
