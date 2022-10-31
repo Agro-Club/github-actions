@@ -24,7 +24,7 @@ jobs:
 
 Результат работы в данном случае будет в `steps.find-issues.outputs.entries`
 
-Аргументы:
+#### Аргументы:
 
 ```yml
 # Токен доступа github
@@ -174,4 +174,45 @@ jira-token:
 request-body:
   description: "Must be a json string. For example see request example in\nhttps://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/#api-rest-api-3-issue-issueidorkey-put"
   required: true
+```
+
+### spec-group-generator
+
+Генерирует группы тестов для параллельного запуска в CI.
+
+#### Использование:
+
+```yml
+on: [push]
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    name: A job to transfer issues
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Find issues in commit messages
+        id: find-issues
+        uses: Agro-Club/github-actions/spec-group-generator@master
+        with:
+          count: 4
+          path: ./cypress/integration
+```
+
+#### Аргументы:
+
+```yml
+# Количество групп
+count:
+  description: "Num of parallel runs"
+  required: true
+# Путь до папки с тестами
+path:
+  description: "Path to the tests folder"
+  default: "."
+# Регулярка для файлов, которые нужно включить в группы
+include:
+  description: "Include file regexp"
+  default: ".+[.tsx?|.jsx?]$"
 ```
