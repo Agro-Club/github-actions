@@ -9,8 +9,10 @@ async function start() {
   const jiraUrl = core.getInput("jira-url", { required: true });
   const jiraUser = core.getInput("jira-username", { required: true });
   const targetTransitionName = core.getInput("target-transition");
-  const delimiter = core.getInput("delimiter");
-  const issues = core.getInput("issues").split(delimiter);
+  const issues = JSON.parse(core.getInput("issues"));
+
+  if (!Array.isArray(issues)) throw new Error("Issues must be an array");
+
   const targetTransitionId = core.getInput("target-transition-id");
 
   if (!targetTransitionName && !targetTransitionId)

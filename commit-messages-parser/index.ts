@@ -3,7 +3,6 @@ import * as github from "@actions/github";
 
 async function start() {
   const token = core.getInput("token");
-  const delimiter = core.getInput("delimiter");
 
   const regexp = new RegExp(core.getInput("regexp"));
   const owner = core.getInput("owner");
@@ -39,10 +38,8 @@ async function start() {
       return entries;
     }
 
-    const entriesArr = [...entries];
-    const entriesStr = entriesArr.join(delimiter);
-    console.log(`Found entries: ${entriesStr}`);
-    core.setOutput("entries", entriesStr);
+    console.log(`Found entries: ${entries}`);
+    core.setOutput("entries", entries);
 
     return entries;
   } catch (error: any) {

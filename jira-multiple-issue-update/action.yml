@@ -3,9 +3,6 @@ description: Update multiple issues to a given state"
 inputs:
   issues:
     description: "Issues to transfer"
-  delimiter:
-    description: "Issues delimiter in the issues string"
-    default: ","
   jira-url:
     description: "Jira URL"
     required: true

@@ -4,9 +4,6 @@ inputs:
   token:
     description: "Github token"
     default: ${{ github.token }}
-  delimiter:
-    description: "Delimiter for array of entries"
-    default: ","
   regexp:
     description: "Regexp to match, defaults to Jira issue regexp"
     default: "[a-zA-Z]+-[0-9]+"
