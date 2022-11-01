@@ -16,7 +16,7 @@ const start = async () => {
   await Promise.all(
     resultsFiles.map(async (file) => {
       const xmlString = await readFile(file, "utf8");
-      console.log(parser.parseStringPromise(xmlString));
+      console.log(await parser.parseStringPromise(xmlString));
     })
   );
 
