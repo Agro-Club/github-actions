@@ -6,13 +6,8 @@ const start = async () => {
         throw new TypeError("count must be a number");
     const testsGlob = core.getInput("tests");
     //const resultsGlob = core.getInput("results");
-    let testFiles = [];
+    let testFiles = glob.sync(testsGlob);
     //let resultsFiles: string[] = [];
-    glob(testsGlob, (err, files) => {
-        if (err)
-            throw err;
-        testFiles = files;
-    });
     //glob(resultsGlob, (err, files) => {
     //  if (err) throw err;
     //  resultsFiles = files;
