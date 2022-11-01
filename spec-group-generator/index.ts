@@ -1,4 +1,5 @@
 import * as core from "@actions/core";
+import { readdir } from "fs/promises";
 import glob from "glob";
 import { resolve } from "path";
 
@@ -15,6 +16,10 @@ const start = async () => {
 
   let testFiles: string[] = [];
   //let resultsFiles: string[] = [];
+
+  const direntArr = await readdir(__dirname, { withFileTypes: true });
+
+  console.log(direntArr);
 
   console.log(
     glob(`${__dirname}/${testsGlob}`, (err, files) => {
