@@ -1,5 +1,8 @@
 import * as core from "@actions/core";
 import glob from "glob";
+import { resolve } from "path";
+
+const __dirname = resolve();
 
 const start = async () => {
   const count = parseInt(core.getInput("count", { required: true }));
@@ -13,8 +16,10 @@ const start = async () => {
   let testFiles: string[] = [];
   //let resultsFiles: string[] = [];
 
+  console.log(__dirname);
+
   console.log(
-    glob("*", (err, files) => {
+    glob(`/${__dirname}/**/*.(js|ts)`, (err, files) => {
       if (err) throw err;
       testFiles = files;
     })
