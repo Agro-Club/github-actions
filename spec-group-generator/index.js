@@ -1,13 +1,18 @@
 import * as core from "@actions/core";
 import glob from "glob";
+import { readFile } from "fs/promises";
+import { Parser } from "xml2js";
 const start = async () => {
     const count = parseInt(core.getInput("count", { required: true }));
     if (!count || isNaN(count) || !isFinite(count))
         throw new TypeError("count must be a number");
-    const testsGlob = core.getInput("tests");
-    //const resultsGlob = core.getInput("results");
-    let testFiles = glob.sync(testsGlob);
-    //let resultsFiles: string[] = [];
+    const testFiles = glob.sync(core.getInput("tests"));
+    const resultsFiles = glob.sync(core.getInput("results"));
+    const parser = new Parser();
+    await Promise.all(resultsFiles.map(async (file) => {
+        const xmlString = await readFile(file, "utf8");
+        console.log(parser.parseStringPromise(xmlString));
+    }));
     //glob(resultsGlob, (err, files) => {
     //  if (err) throw err;
     //  resultsFiles = files;
@@ -36,7 +41,7 @@ const start = async () => {
     //}, []);
     //
     //core.setOutput("result", specGroups);
-    console.log("Generated specs: ", testFiles);
+    console.log("Generated specs: ", resultsFiles);
     return testFiles;
 };
 start();

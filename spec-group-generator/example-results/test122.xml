@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="22.4090" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2022-11-01T11:28:16" tests="0" file="jira-multiple-issue-transition/index.ts" time="0.0000" failures="0">
+  </testsuite>
+  <testsuite name="Reset Password" timestamp="2022-11-01T11:28:16" tests="1" time="15.4090" failures="0">
+    <testcase name="Reset Password should successfuly reset password" time="15.4090" classname="should successfuly reset password">
+    </testcase>
+  </testsuite>
+</testsuites>

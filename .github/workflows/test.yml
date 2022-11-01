@@ -13,3 +13,4 @@ jobs:
         with:
           count: 5
           tests: "!(node_modules)/**/*.*(js|ts|jsx|tsx)"
+          results: "spec-group-generator/example-results/**/*.xml"
