@@ -12,7 +12,7 @@ inputs:
     default: "results/**/*.xml"
 
 outputs:
-  result:
+  groups:
     description: "Spec groups"
 runs:
   using: node16
