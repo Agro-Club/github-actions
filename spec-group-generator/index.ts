@@ -1,9 +1,5 @@
 import * as core from "@actions/core";
-import { readdir } from "fs/promises";
 import glob from "glob";
-import { resolve } from "path";
-
-const __dirname = resolve();
 
 const start = async () => {
   const count = parseInt(core.getInput("count", { required: true }));
@@ -17,16 +13,10 @@ const start = async () => {
   let testFiles: string[] = [];
   //let resultsFiles: string[] = [];
 
-  const direntArr = await readdir(__dirname, { withFileTypes: true });
-
-  console.log(direntArr);
-
-  console.log(
-    glob(`${__dirname}/${testsGlob}`, (err, files) => {
-      if (err) throw err;
-      testFiles = files;
-    })
-  );
+  glob(testsGlob, (err, files) => {
+    if (err) throw err;
+    testFiles = files;
+  });
 
   //glob(resultsGlob, (err, files) => {
   //  if (err) throw err;
