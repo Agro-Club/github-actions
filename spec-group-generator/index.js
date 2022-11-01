@@ -42,6 +42,9 @@ const start = async () => {
             console.log("Some empty groups has been removed!");
         }
         console.log("Generated spec groups: ", groups.map((group) => `${group.value} (~${group.estimatedTime}s)`));
+        const maxTime = Math.max(...groups.map((group) => group.estimatedTime));
+        if (maxTime)
+            console.log("Estimated max time: ", maxTime);
     }
     else {
         resultGroups = testFiles.reduce((acc, file, index) => {
