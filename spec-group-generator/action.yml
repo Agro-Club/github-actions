@@ -4,12 +4,13 @@ inputs:
   count:
     description: "Num of parallel runs"
     required: true
-  path:
+  tests:
     description: "Path to the tests folder"
-    default: "."
-  include:
-    description: "Include file regexp"
-    default: ".+[.tsx?|.jsx?]$"
+    default: "cypress/**/*.(jsx?|tsx?)"
+  results:
+    description: "Path to the folder where the test results are stored"
+    default: "results/**/*.xml"
+
 outputs:
   result:
     description: "Spec groups"
