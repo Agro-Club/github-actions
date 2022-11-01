@@ -6,7 +6,7 @@ inputs:
     required: true
   tests:
     description: "Path to the tests folder"
-    default: "cypress/**/*.(jsx?|tsx?)"
+    default: "cypress/**/*.*(js|ts|jsx|tsx)"
   results:
     description: "Path to the folder where the test results are stored"
     default: "results/**/*.xml"

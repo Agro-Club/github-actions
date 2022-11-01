@@ -196,8 +196,9 @@ jobs:
         id: find-issues
         uses: Agro-Club/github-actions/spec-group-generator@master
         with:
-          count: 4
-          path: ./cypress/integration
+          count: 5
+          tests: "!(node_modules)/**/*.*(js|ts|jsx|tsx)"
+          results: "spec-group-generator/example-results/**/*.xml"
 ```
 
 #### Аргументы:
@@ -207,12 +208,12 @@ jobs:
 count:
   description: "Num of parallel runs"
   required: true
-# Путь до папки с тестами
-path:
+# Шаблон для поиска файлов с тестами в формате glob
+tests:
   description: "Path to the tests folder"
-  default: "."
-# Регулярка для файлов, которые нужно включить в группы
-include:
-  description: "Include file regexp"
-  default: ".+[.tsx?|.jsx?]$"
+  default: "cypress/**/*.*(js|ts|jsx|tsx)"
+# Шаблон для поиска файлов с тестами в формате glob
+results:
+  description: "Path to the folder where the test results are stored"
+  default: "results/**/*.xml"
 ```
