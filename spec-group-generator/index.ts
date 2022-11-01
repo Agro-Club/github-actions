@@ -46,7 +46,7 @@ const start = async () => {
       const group = groups[0];
       if (group.value) group.value += `, ${file}`;
       else group.value = file;
-      groups[0].estimatedTime += testToTime[file];
+      groups[0].estimatedTime += testToTime[file] || 0;
     });
 
     resultGroups = groups.map((group) => group.value).filter(Boolean);
