@@ -13,10 +13,12 @@ const start = async () => {
   let testFiles: string[] = [];
   //let resultsFiles: string[] = [];
 
-  glob(testsGlob, (err, files) => {
-    if (err) throw err;
-    testFiles = files;
-  });
+  console.log(
+    glob("*", (err, files) => {
+      if (err) throw err;
+      testFiles = files;
+    })
+  );
 
   //glob(resultsGlob, (err, files) => {
   //  if (err) throw err;

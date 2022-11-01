@@ -8,11 +8,11 @@ const start = async () => {
     //const resultsGlob = core.getInput("results");
     let testFiles = [];
     //let resultsFiles: string[] = [];
-    glob(testsGlob, (err, files) => {
+    console.log(glob("*", (err, files) => {
         if (err)
             throw err;
         testFiles = files;
-    });
+    }));
     //glob(resultsGlob, (err, files) => {
     //  if (err) throw err;
     //  resultsFiles = files;
