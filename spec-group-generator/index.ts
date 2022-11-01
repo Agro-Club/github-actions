@@ -17,7 +17,7 @@ const start = async () => {
     resultsFiles.map(async (file) => {
       const xmlString = await readFile(file, "utf8");
       const parsed = (await parser.parseStringPromise(xmlString)).testsuites;
-      console.log(parsed.testsuite[0], parsed.$.time);
+      console.log(parsed.testsuite[0].$.file, parsed.$.time);
     })
   );
 
