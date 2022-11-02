@@ -25,7 +25,7 @@ const start = async () => {
   if (testFiles.length === 0) {
     console.log("No test files found");
   } else if (resultsFiles.length > 0) {
-    console.log("Results files found, generating optimized spec groups...");
+    console.log("Results files found, generating optimized spec groups...\n");
     const parser = new Parser();
     const testToTime: { [key: string]: number } = {};
     await Promise.all(
@@ -47,22 +47,23 @@ const start = async () => {
       if (group.value) group.value += `, ${file}`;
       else group.value = file;
       groups[0].estimatedTime += testToTime[file] || 0;
+      console.log(`Added ${file} with estimated time ${testToTime[file]}s`);
     });
 
     resultGroups = groups.map((group) => group.value).filter(Boolean);
 
     if (resultGroups.length < groups.length) {
-      console.log("Some empty groups has been removed!");
+      console.log("\nSome empty groups has been removed!");
     }
 
     console.log(
-      "Generated spec groups: ",
+      "\nGenerated spec groups: ",
       groups.map((group) => `${group.value} (~${group.estimatedTime}s)`)
     );
 
     const maxTime = Math.max(...groups.map((group) => group.estimatedTime));
 
-    if (maxTime) console.log(`Estimated max time: ${maxTime}s`);
+    if (maxTime) console.log(`\nEstimated max time: ${maxTime}s`);
   } else {
     resultGroups = testFiles.reduce<string[]>((acc, file, index) => {
       const groupIndex = index % count;
@@ -73,7 +74,7 @@ const start = async () => {
       return acc;
     }, []);
 
-    console.log("Generated spec groups: ", resultGroups);
+    console.log("\nGenerated spec groups: ", resultGroups);
   }
 
   core.setOutput("groups", resultGroups);
