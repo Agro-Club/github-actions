@@ -7,7 +7,6 @@ async function start() {
     const repo = core.getInput("repo");
     const head = core.getInput("head");
     const base = core.getInput("base");
-    //Sending graphql query to get the commit messages of the pull request
     const octokit = github.getOctokit(token);
     try {
         const response = await octokit.rest.repos.compareCommits({
@@ -18,14 +17,12 @@ async function start() {
             per_page: 100,
         });
         const entries = new Set([]);
-        //Parsing commit messages
         for (const { commit } of response.data.commits) {
             const match = commit.message.match(regexp);
             if (match?.[0]) {
                 entries.add(match[0].toUpperCase());
             }
         }
-        //If no issue keys are found, we return an empty set
         if (entries.size === 0) {
             core.setOutput("entries", "");
             console.log("Nothing found");
