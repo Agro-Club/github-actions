@@ -36,7 +36,6 @@ const start = async () => {
             else
                 group.value = file;
             groups[0].estimatedTime += testToTime[file] || 0;
-            console.log(`Added ${file} to group ${groups.indexOf(group)}, time: ${testToTime[file] || 0}`);
         });
         resultGroups = groups.map((group) => group.value).filter(Boolean);
         if (resultGroups.length < groups.length) {
@@ -45,7 +44,7 @@ const start = async () => {
         console.log("Generated spec groups: ", groups.map((group) => `${group.value} (~${group.estimatedTime}s)`));
         const maxTime = Math.max(...groups.map((group) => group.estimatedTime));
         if (maxTime)
-            console.log("Estimated max time: ", maxTime);
+            console.log(`Estimated max time: ${maxTime}s`);
     }
     else {
         resultGroups = testFiles.reduce((acc, file, index) => {
