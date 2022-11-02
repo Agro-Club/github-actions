@@ -47,6 +47,11 @@ const start = async () => {
       if (group.value) group.value += `, ${file}`;
       else group.value = file;
       groups[0].estimatedTime += testToTime[file] || 0;
+      console.log(
+        `Added ${file} to group ${groups.indexOf(group)}, time: ${
+          testToTime[file] || 0
+        }`
+      );
     });
 
     resultGroups = groups.map((group) => group.value).filter(Boolean);
