@@ -8,12 +8,12 @@ async function start() {
     if (typeof issues === "string")
         issues = [issues];
     try {
-        await axios.post(webhookUrl, {
+        const response = await axios.post(webhookUrl, {
             data: {
                 issues,
             },
         });
-        console.log(`Successfully updated issues: ${issues}`);
+        console.log(`Successfully updated issues: ${issues}`, response);
     }
     catch (error) {
         console.error(`Failed to call webhook for issues: ${issues}:\n
