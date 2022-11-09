@@ -11,19 +11,17 @@ async function start() {
   const base = core.getInput("base");
   const commitsFromInput = JSON.parse(core.getInput("commits"));
 
-  console.log(commitsFromInput);
-
   //Sending graphql query to get the commit messages of the pull request
   const octokit = github.getOctokit(token);
 
-  try {
-    let commits =
-      typeof commitsFromInput === "string"
-        ? [commitsFromInput]
-        : commitsFromInput;
-    const entries: Set<string> = new Set([]);
+  let commits =
+    typeof commitsFromInput === "string"
+      ? [commitsFromInput]
+      : commitsFromInput;
+  const entries: Set<string> = new Set([]);
 
-    if (!commitsFromInput) {
+  try {
+    if (!commitsFromInput && head && base) {
       const response: any = await octokit.rest.repos.compareCommits({
         repo,
         owner,
@@ -32,6 +30,8 @@ async function start() {
         per_page: 100,
       });
       commits = response.data.commits;
+    } else if (!commitsFromInput) {
+      console.error("Need to provide either commits or head and base");
     }
 
     //Parsing commit messages

@@ -10,12 +10,12 @@ async function start() {
     const commitsFromInput = JSON.parse(core.getInput("commits"));
     console.log(commitsFromInput);
     const octokit = github.getOctokit(token);
+    let commits = typeof commitsFromInput === "string"
+        ? [commitsFromInput]
+        : commitsFromInput;
+    const entries = new Set([]);
     try {
-        let commits = typeof commitsFromInput === "string"
-            ? [commitsFromInput]
-            : commitsFromInput;
-        const entries = new Set([]);
-        if (!commitsFromInput) {
+        if (!commitsFromInput && head && base) {
             const response = await octokit.rest.repos.compareCommits({
                 repo,
                 owner,
@@ -24,6 +24,9 @@ async function start() {
                 per_page: 100,
             });
             commits = response.data.commits;
+        }
+        else if (!commitsFromInput) {
+            console.error("Need to provide either commits or head and base");
         }
         for (const { commit } of commits) {
             const match = commit.message.match(regexp);
