@@ -7,17 +7,18 @@ async function start() {
   const regexp = new RegExp(core.getInput("regexp"));
   const owner = core.getInput("owner");
   const repo = core.getInput("repo");
-  const head = core.getInput("head");
+  const head = core.getInput("head", { required: true });
   const base = core.getInput("base");
 
   //Sending graphql query to get the commit messages of the pull request
   const octokit = github.getOctokit(token);
+
   try {
     const response: any = await octokit.rest.repos.compareCommits({
       repo,
       owner,
-      base: core.getInput("base", { required: true }),
-      head: core.getInput("head", { required: true }),
+      base: base || head,
+      head,
       per_page: 100,
     });
 
