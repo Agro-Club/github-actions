@@ -1,0 +1,11 @@
+name: "Jira webhook trigger"
+description: Trigger webhook for multiple issues"
+inputs:
+  issues:
+    description: "Issues to transfer, can be a string or a list of strings"
+  url:
+    description: "Jira webhook url"
+    required: true
+runs:
+  using: node16
+  main: index.js

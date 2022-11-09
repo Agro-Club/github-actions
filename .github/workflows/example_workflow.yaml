@@ -16,10 +16,7 @@ jobs:
           base: ${{ github.event.before }}
 
       - name: Transfer issues
-        uses: Agro-Club/github-actions/jira-multiple-issue-update@master
+        uses: Agro-Club/github-actions/jira-webhook-call@master
         with:
           issues: ${{ steps.find-issues.outputs.entries }}
-          jira-token: ${{ secrets.JIRA_TOKEN }}
-          jira-username: ${{ secrets.JIRA_EMAIL }}
-          jira-url: https://agroclub.atlassian.net
-          request-body: '{"fields":{"customfield_10060": "${{ steps.date.outputs.date }}"}}'
+          url: https://automation.atlassian.com/pro/hooks/a422ff5cbb14832fad9502fef38ef7e30c8f9457
