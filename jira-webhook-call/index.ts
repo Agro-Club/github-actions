@@ -12,7 +12,7 @@ async function start() {
 
   try {
     const response = await axios.post(webhookUrl, {
-      body: {
+      data: {
         issues,
       },
     });
