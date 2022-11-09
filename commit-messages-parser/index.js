@@ -8,7 +8,6 @@ async function start() {
     const head = core.getInput("head");
     const base = core.getInput("base");
     const commitsFromInput = JSON.parse(core.getInput("commits"));
-    console.log(commitsFromInput);
     const octokit = github.getOctokit(token);
     let commits = typeof commitsFromInput === "string"
         ? [commitsFromInput]
