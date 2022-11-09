@@ -17,7 +17,7 @@ async function start() {
       },
     });
 
-    console.log(`Successfully updated issues: ${issues}`, response.data);
+    console.log(`Successfully updated issues: ${issues}`, response);
   } catch (error: any) {
     console.error(
       `Failed to call webhook for issues: ${issues}:\n
