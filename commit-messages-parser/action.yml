@@ -14,10 +14,7 @@ inputs:
     description: "Repository owner"
     default: ${{ github.event.repository.owner.login }}
   head:
-    description: "Head commit"
-    required: true
-  base:
-    description: "Base commit"
+    description: "commits"
     required: true
 outputs:
   entries:
