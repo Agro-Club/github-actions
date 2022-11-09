@@ -15,7 +15,10 @@ inputs:
     default: ${{ github.event.repository.owner.login }}
   head:
     description: "commits"
-    required: true
+  base:
+    description: "Base commit"
+  commits:
+    description: "commits"
 outputs:
   entries:
     description: "Matched substrings"
