@@ -9,7 +9,7 @@ jobs:
         id: find-issues
         uses: Agro-Club/github-actions/commit-messages-parser@master
         with:
-          commits: "${{ github.event.commits }}"
+          commits: ${{ toJson(github.event.commits) }}
 
       - name: Transfer issues
         uses: Agro-Club/github-actions/jira-webhook-call@master
