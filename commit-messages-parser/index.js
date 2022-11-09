@@ -32,6 +32,10 @@ async function start() {
     else if (!commitsFromInput) {
         console.error("Need to provide either commits or head and base");
     }
+    if (!commits) {
+        console.error("No commits found", commits);
+        return [];
+    }
     for (const commit of commits) {
         const match = commit.message.match(regexp);
         if (match?.[0]) {

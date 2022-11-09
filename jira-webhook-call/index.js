@@ -11,7 +11,7 @@ async function start() {
         await axios.post(webhookUrl, {
             issues,
         });
-        console.log(`Successfully updated issues: ${issues}`);
+        console.log(`Successfully called a hook for issues: ${issues}`);
     }
     catch (error) {
         console.error(`Failed to call webhook for issues: ${issues}:\n
