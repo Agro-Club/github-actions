@@ -44,7 +44,7 @@ async function start() {
         return entriesArr;
     }
     catch (error) {
-        console.error(`Failed to load commit messages between ${head} and ${base}`);
+        console.error(`Failed to load commit messages between ${head} and ${base}`, error);
         return [];
     }
 }
