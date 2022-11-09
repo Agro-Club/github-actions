@@ -11,6 +11,8 @@ async function start() {
   const base = core.getInput("base");
   const commitsFromInput = JSON.parse(core.getInput("commits"));
 
+  console.log(commitsFromInput);
+
   //Sending graphql query to get the commit messages of the pull request
   const octokit = github.getOctokit(token);
 
