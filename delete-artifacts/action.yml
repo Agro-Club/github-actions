@@ -1,0 +1,21 @@
+name: "Delete all artifacts"
+description: "Deletes all artifacts with given name"
+inputs:
+  name:
+    description: "Name regexp"
+    required: true
+  token:
+    description: "Github token"
+    default: ${{ github.token }}
+  repo:
+    description: "Repository name"
+    default: ${{ github.event.repository.name }}
+  owner:
+    description: "Repository owner"
+    default: ${{ github.event.repository.owner.login }}
+outputs:
+  groups:
+    description: "Spec groups"
+runs:
+  using: node16
+  main: index.js
