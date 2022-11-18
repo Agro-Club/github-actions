@@ -15,10 +15,5 @@
     "skipLibCheck": true,
     "removeComments": true
   },
-  "include": [
-    "jira-multiple-issue-transition",
-    "commit-messages-parser",
-    "jira-webhook-call",
-    "spec-group-generator"
-  ]
+  "include": ["**/*.ts"]
 }
