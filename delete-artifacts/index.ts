@@ -16,15 +16,20 @@ const start = async () => {
     repo,
   });
 
-  res.data.artifacts
-    .filter(({ name }) => nameRegexp.test(name))
-    .forEach(({ id }) => {
-      octokit.rest.actions.deleteArtifact({
-        owner,
-        repo,
-        artifact_id: id,
-      });
-    });
+  await Promise.all(
+    res.data.artifacts
+      .filter(({ name }) => nameRegexp.test(name))
+      .map(({ id, name, url }) => {
+        core.info(`==> Deleting artifact ${name}, with url=${url}...`);
+        return octokit.rest.actions.deleteArtifact({
+          owner,
+          repo,
+          artifact_id: id,
+        });
+      })
+  );
+
+  core.info("==> Done!");
 };
 
 start();
