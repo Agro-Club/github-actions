@@ -23,14 +23,20 @@ async function main() {
         const nameRegexpObj = new RegExp(nameRegexp, "gmi");
         const skipUnpack = core.getBooleanInput("skip_unpack");
         const ifNoArtifactFound = core.getInput("if_no_artifact_found");
-        let workflow = Number(core.getInput("workflow"));
+        let workflow = core.getInput("workflow")
+            ? Number(core.getInput("workflow"))
+            : undefined;
         let workflowConclusion = core.getInput("workflow_conclusion");
-        let pr = Number(core.getInput("pr"));
+        let pr = core.getInput("pr") ? Number(core.getInput("pr")) : undefined;
         let commit = core.getInput("commit");
         let branch = core.getInput("branch");
         let event = core.getInput("event");
-        let runID = Number(core.getInput("run_id"));
-        let runNumber = Number(core.getInput("run_number"));
+        let runID = core.getInput("run_id")
+            ? Number(core.getInput("run_id"))
+            : undefined;
+        let runNumber = core.getInput("run_number")
+            ? Number(core.getInput("run_number"))
+            : undefined;
         let checkArtifacts = core.getBooleanInput("check_artifacts");
         let searchArtifacts = core.getBooleanInput("search_artifacts");
         let dryRun = core.getInput("dry_run");
@@ -48,21 +54,10 @@ async function main() {
         }
         core.info(`==> Workflow name: ${workflow}`);
         core.info(`==> Workflow conclusion: ${workflowConclusion}`);
-        const uniqueInputSets = [
-            {
-                pr: pr,
-                commit: commit,
-                branch: branch,
-                run_id: runID,
-            },
-        ];
-        uniqueInputSets.forEach((inputSet) => {
-            const inputs = Object.values(inputSet);
-            const providedInputs = inputs.filter((input) => input !== "");
-            if (providedInputs.length > 1) {
-                throw new Error(`The following inputs cannot be used together: ${Object.keys(inputSet).join(", ")}`);
-            }
-        });
+        const inputs = [pr, commit, branch, runID].filter(Boolean);
+        if (inputs.length > 1) {
+            throw new Error(`The following inputs cannot be used together: pr, commit, branch, runID.`);
+        }
         if (pr) {
             core.info(`==> PR: ${pr}`);
             const pull = await client.rest.pulls.get({

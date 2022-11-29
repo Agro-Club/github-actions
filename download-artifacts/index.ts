@@ -65,7 +65,7 @@ async function main() {
     const inputs = [pr, commit, branch, runID].filter(Boolean);
     if (inputs.length > 1) {
       throw new Error(
-        `The following inputs cannot be used together: pr, commit, branch, runID. Given: pr:${pr} commit:${commit} branch:${branch} runID:${runID}`
+        `The following inputs cannot be used together: pr, commit, branch, runID.`
       );
     }
 
