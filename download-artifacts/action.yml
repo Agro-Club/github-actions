@@ -82,4 +82,4 @@ outputs:
     description: JSON array with details about found artifacts
 runs:
   using: node16
-  main: main.js
+  main: index.js
