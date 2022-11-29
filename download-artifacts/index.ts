@@ -72,7 +72,7 @@ async function main() {
     ];
     uniqueInputSets.forEach((inputSet) => {
       const inputs = Object.values(inputSet);
-      const providedInputs = inputs.filter((input) => input !== "");
+      const providedInputs = inputs.filter(Boolean);
       if (providedInputs.length > 1) {
         throw new Error(
           `The following inputs cannot be used together: ${Object.keys(
