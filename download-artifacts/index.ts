@@ -28,12 +28,16 @@ async function main() {
     const ifNoArtifactFound = core.getInput("if_no_artifact_found");
     let workflow = Number(core.getInput("workflow"));
     let workflowConclusion = core.getInput("workflow_conclusion");
-    let pr = Number(core.getInput("pr"));
+    let pr = core.getInput("pr") ? Number(core.getInput("pr")) : undefined;
     let commit = core.getInput("commit");
     let branch = core.getInput("branch");
     let event = core.getInput("event");
-    let runID = Number(core.getInput("run_id"));
-    let runNumber = Number(core.getInput("run_number"));
+    let runID = core.getInput("run_id")
+      ? Number(core.getInput("run_id"))
+      : undefined;
+    let runNumber = core.getInput("run_number")
+      ? Number(core.getInput("run_number"))
+      : undefined;
     let checkArtifacts = core.getBooleanInput("check_artifacts");
     let searchArtifacts = core.getBooleanInput("search_artifacts");
     let dryRun = core.getInput("dry_run");
