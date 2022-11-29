@@ -62,25 +62,12 @@ async function main() {
     core.info(`==> Workflow name: ${workflow}`);
     core.info(`==> Workflow conclusion: ${workflowConclusion}`);
 
-    const uniqueInputSets = [
-      {
-        pr: pr,
-        commit: commit,
-        branch: branch,
-        run_id: runID,
-      },
-    ];
-    uniqueInputSets.forEach((inputSet) => {
-      const inputs = Object.values(inputSet);
-      const providedInputs = inputs.filter(Boolean);
-      if (providedInputs.length > 1) {
-        throw new Error(
-          `The following inputs cannot be used together: ${Object.keys(
-            inputSet
-          ).join(", ")}`
-        );
-      }
-    });
+    const inputs = [pr, commit, branch, runID].filter(Boolean);
+    if (inputs.length > 1) {
+      throw new Error(
+        `The following inputs cannot be used together: pr, commit, branch, runID. Given: pr:${pr} commit:${commit} branch:${branch} runID:${runID}`
+      );
+    }
 
     if (pr) {
       core.info(`==> PR: ${pr}`);
