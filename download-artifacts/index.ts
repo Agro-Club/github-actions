@@ -41,13 +41,16 @@ async function main() {
       ? Number(core.getInput("run_number"))
       : undefined;
     let checkArtifacts = core.getBooleanInput("check_artifacts");
-    let searchArtifacts = core.getBooleanInput("search_artifacts");
+    let searchArtifacts =
+      core.getBooleanInput("search_artifacts") || !name
+        ? Boolean(nameRegexp)
+        : false;
     let dryRun = core.getInput("dry_run");
 
     const client = github.getOctokit(token);
 
     core.info(`==> Repository: ${owner}/${repo}`);
-    core.info(`==> Artifact name: ${name}`);
+    core.info(`==> Artifact name: ${name || nameRegexp}`);
     core.info(`==> Local path: ${path}`);
 
     if (!workflow) {
